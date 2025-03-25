@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { StyleSheet, Text, View, Pressable, BackHandler, FlatList, StatusBar } from "react-native";
+import { StyleSheet, Text, View, Pressable, BackHandler, FlatList, StatusBar, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
 import { Feather } from "@expo/vector-icons";
@@ -53,48 +53,7 @@ export default function ResultsScreen() {
   return (
     <SafeAreaView style={styles.container} edges={["top"]}>
       <StatusBar barStyle="dark-content" backgroundColor={colors.background} />
-      
-      <View style={styles.header}>
-        <Pressable style={styles.backButton} onPress={handleGoHome}>
-          <Feather name="home" size={24} color={colors.text} />
-        </Pressable>
-        <Text style={styles.headerTitle}>Quiz Results</Text>
-      </View>
-      
-      <MotiView
-        from={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ type: "timing", duration: 500 }}
-        style={styles.scoreCard}
-      >
-        <Text style={styles.quizTitle}>{currentQuiz.title}</Text>
-        
-        <View style={styles.scoreContainer}>
-          <View style={styles.scoreCircle}>
-            <Text style={styles.scoreText}>{score}%</Text>
-          </View>
-          <Text style={styles.scoreMessage}>{getScoreMessage()}</Text>
-        </View>
-        
-        <View style={styles.statsContainer}>
-          <View style={styles.statItem}>
-            <Feather name="check-circle" size={20} color={colors.success} />
-            <Text style={styles.statText}>
-              {correctAnswers} correct ({Math.round((correctAnswers / totalQuestions) * 100)}%)
-            </Text>
-          </View>
-          
-          <View style={styles.statItem}>
-            <Feather name="x-circle" size={20} color={colors.error} />
-            <Text style={styles.statText}>
-              {totalQuestions - correctAnswers} incorrect ({Math.round(((totalQuestions - correctAnswers) / totalQuestions) * 100)}%)
-            </Text>
-          </View>
-        </View>
-      </MotiView>
-      
-      <Text style={styles.sectionTitle}>Question Summary</Text>
-      
+  
       <FlatList
         data={currentQuizResult.questionResults}
         keyExtractor={(item) => item.questionId}
@@ -113,16 +72,62 @@ export default function ResultsScreen() {
         }}
         contentContainerStyle={styles.listContent}
         showsVerticalScrollIndicator={false}
+        ListHeaderComponent={
+          <>
+            <View style={styles.header}>
+              <Pressable style={styles.backButton} onPress={handleGoHome}>
+                <Feather name="home" size={24} color={colors.text} />
+              </Pressable>
+              <Text style={styles.headerTitle}>Quiz Results</Text>
+            </View>
+  
+            <MotiView
+              from={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ type: "timing", duration: 500 }}
+              style={styles.scoreCard}
+            >
+              <Text style={styles.quizTitle}>{currentQuiz.title}</Text>
+  
+              <View style={styles.scoreContainer}>
+                <View style={styles.scoreCircle}>
+                  <Text style={styles.scoreText}>{score}%</Text>
+                </View>
+                <Text style={styles.scoreMessage}>{getScoreMessage()}</Text>
+              </View>
+  
+              <View style={styles.statsContainer}>
+                <View style={styles.statItem}>
+                  <Feather name="check-circle" size={20} color={colors.success} />
+                  <Text style={styles.statText}>
+                    {correctAnswers} correct ({Math.round((correctAnswers / totalQuestions) * 100)}%)
+                  </Text>
+                </View>
+  
+                <View style={styles.statItem}>
+                  <Feather name="x-circle" size={20} color={colors.error} />
+                  <Text style={styles.statText}>
+                    {totalQuestions - correctAnswers} incorrect ({Math.round(((totalQuestions - correctAnswers) / totalQuestions) * 100)}%)
+                  </Text>
+                </View>
+              </View>
+            </MotiView>
+  
+            <Text style={styles.sectionTitle}>Question Summary</Text>
+          </>
+        }
+        ListFooterComponent={
+          <View style={styles.footer}>
+            <Pressable style={styles.button} onPress={handleGoHome}>
+              <Feather name="home" size={20} color={colors.white} />
+              <Text style={styles.buttonText}>Back to Home</Text>
+            </Pressable>
+          </View>
+        }
       />
-      
-      <View style={styles.footer}>
-        <Pressable style={styles.button} onPress={handleGoHome}>
-          <Feather name="home" size={20} color={colors.white} />
-          <Text style={styles.buttonText}>Back to Home</Text>
-        </Pressable>
-      </View>
     </SafeAreaView>
   );
+  
 }
 
 const styles = StyleSheet.create({
@@ -174,20 +179,20 @@ const styles = StyleSheet.create({
     fontWeight: fonts.weights.semiBold,
     color: colors.text,
     textAlign: "center",
-    marginBottom: spacing.md,
+    marginBottom: spacing.sm,
   },
   scoreContainer: {
     alignItems: "center",
-    marginVertical: spacing.lg,
+    marginVertical: spacing.md,
   },
   scoreCircle: {
-    width: 120,
-    height: 120,
+    width: 90,
+    height: 90,
     borderRadius: 60,
     backgroundColor: colors.primary,
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: spacing.md,
+    marginBottom: spacing.sm,
   },
   scoreText: {
     fontFamily: fonts.families.regular,

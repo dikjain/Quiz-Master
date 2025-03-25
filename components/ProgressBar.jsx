@@ -3,11 +3,8 @@ import { StyleSheet, View } from "react-native";
 import { MotiView } from "moti";
 import { colors } from "../constants/colors";
 
-interface ProgressBarProps {
-  progress: number; // 0 to 1
-}
 
-export const ProgressBar: React.FC<ProgressBarProps> = ({ progress }) => {
+export const ProgressBar = ({ progress }) => {
   return (
     <View style={styles.container}>
       <MotiView

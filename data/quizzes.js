@@ -1,6 +1,4 @@
-import { Quiz } from "../types/quiz";
-
-export const quizzes: Quiz[] = [
+export const quizzes = [
   {
     id: "quiz1",
     title: "General Knowledge",

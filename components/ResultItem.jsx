@@ -6,16 +6,9 @@ import { MotiView } from "moti";
 import { colors } from "../constants/colors";
 import { spacing } from "../constants/spacing";
 import { fonts } from "../constants/fonts";
-import { Question } from "../types/quiz";
 
-interface ResultItemProps {
-  question: Question;
-  isCorrect: boolean;
-  selectedOptionId: string;
-  index: number;
-}
 
-export const ResultItem: React.FC<ResultItemProps> = ({
+export const ResultItem = ({
   question,
   isCorrect,
   selectedOptionId,
@@ -120,7 +113,7 @@ const styles = StyleSheet.create({
     fontFamily: fonts.families.regular,
     fontSize: fonts.sizes.sm,
     color: colors.textLight,
-    width: 100,
+    width: 170,
   },
   optionText: {
     fontFamily: fonts.families.regular,

@@ -1,23 +1,6 @@
 import { create } from "zustand";
-import { Quiz, QuizResult } from "../types/quiz";
 
-interface QuizState {
-  currentQuiz: Quiz | null;
-  currentQuestionIndex: number;
-  selectedOptionId: string | null;
-  isAnswerChecked: boolean;
-  quizResults: QuizResult[];
-  currentQuizResult: QuizResult | null;
-  
-  setCurrentQuiz: (quiz: Quiz) => void;
-  resetQuiz: () => void;
-  goToNextQuestion: () => void;
-  selectOption: (optionId: string) => void;
-  checkAnswer: () => void;
-  finishQuiz: () => void;
-}
-
-export const useQuizStore = create<QuizState>((set, get) => ({
+export const useQuizStore = create((set, get) => ({
   currentQuiz: null,
   currentQuestionIndex: 0,
   selectedOptionId: null,

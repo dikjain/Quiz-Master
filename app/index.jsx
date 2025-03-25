@@ -1,6 +1,5 @@
 import React from "react";
 import { StyleSheet, Text, View, FlatList, StatusBar, TextStyle } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { Feather } from "@expo/vector-icons";
 import { MotiView } from "moti";
 
@@ -12,7 +11,7 @@ import { QuizCard } from "../components/QuizCard";
 
 export default function HomeScreen() {
   return (
-    <SafeAreaView style={styles.container} edges={["top"]}>
+    <View style={styles.container} >
       <StatusBar barStyle="dark-content" backgroundColor={colors.background} />
       
       <MotiView
@@ -22,7 +21,7 @@ export default function HomeScreen() {
         style={styles.header}
       >
         <View>
-          <Text style={styles.title as TextStyle}>Quiz App</Text>
+          <Text style={styles.title}>Quiz App</Text>
           <Text style={styles.subtitle}>Challenge yourself with these quizzes</Text>
         </View>
         <View style={styles.iconContainer}>
@@ -41,12 +40,13 @@ export default function HomeScreen() {
         contentContainerStyle={styles.listContent}
         showsVerticalScrollIndicator={false}
       />
-    </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    marginTop:30,
     flex: 1,
     backgroundColor: colors.background,
   },
@@ -88,8 +88,6 @@ const styles = StyleSheet.create({
     fontSize: fonts.sizes.lg,
     fontWeight: fonts.weights.semiBold,
     color: colors.text,
-    marginTop: spacing.lg,
-    marginBottom: spacing.md,
     paddingHorizontal: spacing.lg,
   },
   listContent: {

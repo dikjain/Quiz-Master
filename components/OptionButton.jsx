@@ -6,18 +6,9 @@ import { MotiView } from "moti";
 import { colors } from "../constants/colors";
 import { spacing } from "../constants/spacing";
 import { fonts } from "../constants/fonts";
-import { Option } from "../types/quiz";
 
-interface OptionButtonProps {
-  option: Option;
-  index: number;
-  isSelected: boolean;
-  isAnswerChecked: boolean;
-  onSelect: (optionId: string) => void;
-  disabled: boolean;
-}
 
-export const OptionButton: React.FC<OptionButtonProps> = ({
+export const OptionButton = ({
   option,
   index,
   isSelected,

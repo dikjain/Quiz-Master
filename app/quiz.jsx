@@ -38,7 +38,6 @@ export default function QuizScreen() {
     return () => backHandler.remove();
   }, []);
 
-  // If no quiz is selected, redirect to home
   if (!currentQuiz) {
     router.replace("/");
     return null;
@@ -86,7 +85,7 @@ export default function QuizScreen() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ type: "timing", duration: 300 }}
         >
-          <Text style={styles.questionText as TextStyle}>{currentQuestion.text}</Text>
+          <Text style={styles.questionText }>{currentQuestion.text}</Text>
           
           <View style={styles.optionsContainer}>
             {currentQuestion.options.map((option, index) => (
@@ -114,14 +113,14 @@ export default function QuizScreen() {
             onPress={checkAnswer}
             disabled={!selectedOptionId}
           >
-            <Text style={styles.buttonText as TextStyle}>Check Answer</Text>
+            <Text style={styles.buttonText}>Check Answer</Text>
           </Pressable>
         ) : (
           <Pressable
             style={[styles.button, { backgroundColor: colors.secondary }]}
             onPress={handleNextQuestion}
           >
-            <Text style={styles.buttonText as TextStyle}>
+            <Text style={styles.buttonText}>
               {isLastQuestion ? "See Results" : "Next Question"}
             </Text>
             <Feather name="arrow-right" size={20} color={colors.white} />
@@ -190,7 +189,7 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.md,
     borderRadius: 12,
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "center", 
     flexDirection: "row",
   },
   buttonDisabled: {

@@ -10,12 +10,8 @@ import { fonts } from "../constants/fonts";
 import { Quiz } from "../types/quiz";
 import { useQuizStore } from "../store/quizStore";
 
-interface QuizCardProps {
-  quiz: Quiz;
-  index: number;
-}
 
-export const QuizCard: React.FC<QuizCardProps> = ({ quiz, index }) => {
+export const QuizCard = ({ quiz, index }) => {
   const setCurrentQuiz = useQuizStore((state) => state.setCurrentQuiz);
 
   const handleStartQuiz = () => {
@@ -58,14 +54,16 @@ export const QuizCard: React.FC<QuizCardProps> = ({ quiz, index }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#00ff00",
+    backgroundColor: colors.cardBackground,
     borderRadius: 16,
     marginBottom: spacing.lg,
     overflow: "hidden",
     shadowColor: colors.shadow,
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.1,
-    shadowRadius: 8,
+    borderWidth :1,
+    borderColor : colors.black,
+        shadowRadius: 8,
     elevation: 3,
   },
   pressed: {
@@ -75,6 +73,8 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: 160,
+    borderBottomWidth : 2,
+    borderBottomColor : "black",
     resizeMode: "cover",
   },
   contentContainer: {
